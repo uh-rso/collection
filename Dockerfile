@@ -8,4 +8,4 @@ ADD target/comments-1.0-SNAPSHOT.jar /app
 
 EXPOSE 8080
 
-CMD ["java", "-jar", "comments-1.0-SNAPSHOT.jar"]
+CMD ["java", "-jar", "collection-1.0-SNAPSHOT.jar"]
