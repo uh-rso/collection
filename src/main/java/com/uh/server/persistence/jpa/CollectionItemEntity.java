@@ -24,7 +24,7 @@ public class CollectionItemEntity {
     @Getter
     @Setter
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    private CollectionEntity media;
+    private CollectionEntity collection;
 
     @Getter
     @Setter
