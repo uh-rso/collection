@@ -2,9 +2,9 @@ package com.uh.server;
 
 import java.util.Optional;
 
+import com.uh.server.dto.CoordinatesDto;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.springframework.util.StringUtils;
 import uk.recurse.geocoding.reverse.Country;
 import uk.recurse.geocoding.reverse.ReverseGeocoder;
 
@@ -14,16 +14,10 @@ public class ReverseGeocoderTest {
     @Test
     void testCoordinatesToCountryCode() {
         final String gpsPosition = "46.5662 12.6899888888889";
-        final String[] s = StringUtils.split(gpsPosition, " ");
-        if ((s == null) || (s.length != 2)) {
-            Assertions.fail("GPS Position does not contain two doubles.");
-        }
-
-        final var x = s[0];
-        final var y = s[1];
+        final CoordinatesDto gpsCoordinates = GeoUtils.getGpsCoordinates(gpsPosition);
 
         final ReverseGeocoder geocoder = new ReverseGeocoder();
-        final Optional<Country> country = geocoder.getCountry(Double.parseDouble(x), Double.parseDouble(y));
+        final Optional<Country> country = geocoder.getCountry(gpsCoordinates.getLatitude(), gpsCoordinates.getLongitude());
 
         Assertions.assertThat(country).isPresent();
         Assertions.assertThat(country.get().iso()).isEqualTo("IT");
