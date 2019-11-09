@@ -4,7 +4,7 @@ RUN mkdir /app
 
 WORKDIR /app
 
-ADD target/comments-1.0-SNAPSHOT.jar /app
+ADD target/collection-1.0-SNAPSHOT.jar /app
 
 EXPOSE 8080
 
