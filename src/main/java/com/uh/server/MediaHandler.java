@@ -50,7 +50,7 @@ public class MediaHandler {
             countryCollection = countryByName.get();
         }
 
-        final Optional<CollectionItemEntity> byId = collectionItemRepository.findById(Long.valueOf(media.getId()));
+        final Optional<CollectionItemEntity> byId = collectionItemRepository.findByMediaId(media.getId());
         final CollectionItemEntity item = byId.isEmpty() ? new CollectionItemEntity() : byId.get();
         item.setCollection(countryCollection);
         item.setMediaId(media.getId());
