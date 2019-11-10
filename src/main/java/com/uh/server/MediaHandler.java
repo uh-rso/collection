@@ -57,6 +57,4 @@ public class MediaHandler {
         collectionItemRepository.save(item);
     }
 
-
-
 }
