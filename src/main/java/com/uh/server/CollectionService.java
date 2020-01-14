@@ -1,12 +1,10 @@
 package com.uh.server;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.uh.server.dto.CollectionDto;
-import com.uh.server.dto.MediaDto;
 import com.uh.server.dto.MediaIdDto;
 import com.uh.server.persistence.jpa.CollectionEntity;
 import com.uh.server.persistence.jpa.CollectionRepository;

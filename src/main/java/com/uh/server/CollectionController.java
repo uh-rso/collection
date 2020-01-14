@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.uh.server.dto.CollectionDto;
 import com.uh.server.dto.MediaDto;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,8 +19,6 @@ public class CollectionController {
 
     private final MediaHandler mediaHandler;
 
-    private final String userId = "1";
-
     public CollectionController(final CollectionService collectionService, final MediaHandler mediaHandler) {
         this.collectionService = collectionService;
         this.mediaHandler = mediaHandler;
@@ -27,12 +26,14 @@ public class CollectionController {
 
     @PostMapping(path = "/media")
     public void newMediaCreated(@RequestBody final MediaDto media) {
-        mediaHandler.newMediaCreated(media);
+        final String userId = SecurityContextHolder.getContext().getAuthentication().getName();
+        mediaHandler.newMediaCreated(media, userId);
     }
 
     @GetMapping
     public List<CollectionDto> getAll() {
-        return collectionService.getAll("1"); // TODO Fix userId/ownerId
+        final String userId = SecurityContextHolder.getContext().getAuthentication().getName();
+        return collectionService.getAll(userId);
     }
 
 }

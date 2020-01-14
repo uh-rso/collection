@@ -26,7 +26,7 @@ public class MediaHandler {
     }
 
 
-    public void newMediaCreated(final MediaDto media) {
+    public void newMediaCreated(final MediaDto media, final String userId) {
         final String gpsPosition = media.getTags().get("GPSPosition");
         final Optional<Country> countryFromCoordinates = GeoUtils.getCountryFromCoordinates(gpsPosition);
 
@@ -43,7 +43,7 @@ public class MediaHandler {
         final CollectionEntity countryCollection;
         if (countryByName.isEmpty()) {
             countryCollection = new CollectionEntity();
-            countryCollection.setOwnerId("1"); // TODO Inject authenticated userId or ownerId
+            countryCollection.setOwnerId(userId);
             countryCollection.setName(countryName);
             collectionRepository.save(countryCollection);
         } else {
